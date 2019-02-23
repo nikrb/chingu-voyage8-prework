@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import SearchBox from './SearchBox';
-import List from './card/CardList';
+import CardList from './card/CardList';
 
 import { getBooks } from './actions';
 
@@ -16,10 +16,10 @@ class App extends Component {
         console.log(result);
         this.setState({
           books: result.items.map(item => {
-            const { authors, imageLinks, publisher = 'Unknown', title = 'Unknown' } = item.volumeInfo;
+            const { authors, imageLinks, publisher = 'Unknown', previewLink, title = 'Unknown' } = item.volumeInfo;
             const author = authors && authors.length ? authors[0] : 'Unknown';
             const cover = imageLinks ? imageLinks.smallThumbnail : '//via.placeholder.com/128x194?No Cover';
-            return { author, cover, publisher, title };
+            return { author, cover, previewLink, publisher, title };
           }),
         })
       } else {
@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <div className="App">
         <SearchBox onSearch={this.search.bind(this)} />
-        <List items={books} />
+        <CardList items={books} />
       </div>
     );
   }

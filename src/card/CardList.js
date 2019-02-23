@@ -15,6 +15,7 @@ class CardList extends React.Component {
               <p>{item.title}</p>
               <p>{item.author}</p>
               <p>{item.publisher}</p>
+              <a href={item.previewLink} >Preview</a>
             </div>
           ))
           : "Nothing to see here"
