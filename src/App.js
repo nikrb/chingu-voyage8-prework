@@ -18,7 +18,7 @@ class App extends Component {
           books: result.items.map(item => {
             const { authors, imageLinks, publisher = 'Unknown', title = 'Unknown' } = item.volumeInfo;
             const author = authors && authors.length ? authors[0] : 'Unknown';
-            const cover = imageLinks ? imageLinks.smallThumbnail : '//via.placeholder.com/64x64?No Cover';
+            const cover = imageLinks ? imageLinks.smallThumbnail : '//via.placeholder.com/128x194?No Cover';
             return { author, cover, publisher, title };
           }),
         })
