@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import SearchBox from './SearchBox';
-import CardList from './card/CardList';
+import CardGrid from './card/CardGrid';
 
 import { getBooks } from './actions';
 
@@ -13,7 +13,6 @@ class App extends Component {
     getBooks(title)
     .then(result => {
       if (result.totalItems) {
-        console.log(result);
         this.setState({
           books: result.items.map(item => {
             const { authors, imageLinks, publisher = 'Unknown', previewLink, title = 'Unknown' } = item.volumeInfo;
@@ -32,7 +31,7 @@ class App extends Component {
     return (
       <div className="App">
         <SearchBox onSearch={this.search.bind(this)} />
-        <CardList items={books} />
+        <CardGrid items={books} />
       </div>
     );
   }
