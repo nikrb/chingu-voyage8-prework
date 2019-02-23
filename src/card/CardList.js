@@ -1,5 +1,5 @@
 /**
-  author, title, publishing company
+  author, title, publishing company, book cover image, preview link
 **/
 import React from 'react';
 
