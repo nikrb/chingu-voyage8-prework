@@ -11,7 +11,7 @@ class CardList extends React.Component {
         {items.length
           ? items.map((item, i) => (
             <div key={i}>
-              <img src={item.cover} alt='no image' />
+              <img src={item.cover} alt='missing' />
               <p>{item.title}</p>
               <p>{item.author}</p>
               <p>{item.publisher}</p>
