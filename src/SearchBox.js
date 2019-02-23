@@ -3,7 +3,7 @@ import React from 'react';
 class SearchBox extends React.Component {
   state = { title: '' };
   onChange(e) {
-    this.setState({ title: e.value });
+    this.setState({ title: e.target.value });
   }
   onClick() {
     this.props.onSearch(this.state.title);
