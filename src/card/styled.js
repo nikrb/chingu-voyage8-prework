@@ -20,6 +20,9 @@ export const DetailBlock = styled.div`
   margin-left: 0.3rem;
 `;
 
+export const BookImage = styled.img`
+`;
+
 export const BookAuthor = styled.p`
   color: grey;
 `;

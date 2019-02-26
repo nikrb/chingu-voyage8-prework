@@ -8,7 +8,11 @@ import { SearchBoxWrapper } from './styled';
 class SearchBox extends React.Component {
   state = { title: '' };
   onChange(e) {
-    this.setState({ title: e.target.value });
+    if (e.key === 'Enter') {
+      this.onClick();
+    } else {
+      this.setState({ title: e.target.value });
+    }
   }
   onClear() {
     this.setState({ title: '' });
@@ -19,7 +23,11 @@ class SearchBox extends React.Component {
   render() {
     return (
       <SearchBoxWrapper>
-        <InputClearable text={this.state.title} onChange={this.onChange.bind(this)} onClear={this.onClear.bind(this)} />
+        <InputClearable
+          text={this.state.title}
+          onChange={this.onChange.bind(this)}
+          onClear={this.onClear.bind(this)}
+        />
         <SearchButton onClick={this.onClick.bind(this)} />
       </SearchBoxWrapper>
     );

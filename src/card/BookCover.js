@@ -1,12 +1,9 @@
 import React from 'react';
 
-class BookCover extends React.Component {
-  render() {
-    return (
-      <img src={this.props.src} alt='missing' />
-    );
-  }
-}
+import { BookImage } from './styled';
+
+const BookCover = ({ src }) =>
+  <BookImage src={src} alt='missing' />;
 
 export default BookCover;
 
