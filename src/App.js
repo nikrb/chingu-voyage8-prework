@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import SearchBox from './search/SearchBox';
-import CardGrid from './card/CardGrid';
-import Loader from './loader/Loader';
+import SearchBox from './search';
+import CardGrid from './card';
+import Loader from './loader';
 
 import { getBooks } from './actions';
 

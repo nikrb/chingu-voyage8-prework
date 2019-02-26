@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { Container } from './styled';
-import BookCover from './BookCover';
-import BookDetail from './BookDetail';
+import { BookCover, BookDetail } from '../book';
 
 const Card = ({ book }) =>
   <Container>
