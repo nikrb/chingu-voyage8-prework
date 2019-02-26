@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import SearchBox from './SearchBox';
+import SearchBox from './search/SearchBox';
 import CardGrid from './card/CardGrid';
 
 import { getBooks } from './actions';
