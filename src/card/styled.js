@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
 export const CardGrid = styled.div`
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 700px) {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
 `;
 
 export const Container = styled.div`
