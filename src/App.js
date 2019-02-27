@@ -20,11 +20,10 @@ class App extends Component {
   }
   render() {
     const { books = [], isLoading } = this.state;
-    const search = this.search.bind(this);
     return (
       <div className="App">
         <h1>Book Finder</h1>
-        <SearchBox onSearch={search} />
+        <SearchBox onSearch={this.search.bind(this)} />
         {isLoading
           ? <Loader/>
           : books.length
