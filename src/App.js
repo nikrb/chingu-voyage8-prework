@@ -15,7 +15,6 @@ class App extends Component {
     this.setState({ isLoading: true });
     getBooks(title)
     .then(books => {
-      console.log('books:', books);
       this.setState({ books, isLoading: false });
     });
   }
