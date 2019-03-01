@@ -8,7 +8,11 @@ export const DetailBlock = styled.div`
 `;
 
 export const BookImage = styled.img`
-  flex: 0 0 128px;
+  display: flex;
+  object-fit: contain;
+  flex: 0 1 128px;
+  /* just for firefox */
+  max-width: 128px;
 `;
 
 export const BookAuthor = styled.p`
