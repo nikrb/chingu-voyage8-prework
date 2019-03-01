@@ -8,27 +8,69 @@ import MessageLine from './message';
 import { getBooks } from './actions';
 
 class App extends Component {
-  state = {
-    books: [],
-    isLoading: false,
-    errmsg: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+      isLoading: false,
+      isLoadingMore: false,
+      errmsg: '',
+    };
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+  startIndex = 0;
+  searchText = '';
   clearMsg() {
     this.setState({ errmsg: '' });
   }
+  handleScroll(e) {
+    if (document.documentElement.scrollHeight - (window.innerHeight + window.scrollY) < 10) {
+      const { isLoading, isLoadingMore } = this.state;
+      if (!isLoading && !isLoadingMore) {
+        this.setState({ isLoadingMore: true });
+        getBooks({ title: this.searchText, startIndex: this.startIndex + 12 })
+        .then(books => {
+          this.startIndex += 12;
+          this.setState({
+            isLoadingMore: false,
+            books: this.state.books.concat(books),
+          });
+        })
+        .catch(err => {
+          this.setState({
+            errmsg: err.message,
+            isLoadingMore: false,
+          });
+        });
+      }
+    }
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
   search(title) {
     if (title) {
+      this.searchText = title;
       this.setState({ isLoading: true });
-      getBooks(title)
+      getBooks({ title })
       .then(books => {
         this.setState({ books, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({
+          errmsg: err.message,
+          isLoading: false,
+        });
       });
     } else {
-      this.setState({ errmsg: 'Please enter a (partial) title' });
+      this.setState({ errmsg: 'Please enter a (partial) title', books: [] });
     }
   }
   render() {
-    const { books = [], isLoading, errmsg } = this.state;
+    const { books = [], isLoading, isLoadingMore, errmsg } = this.state;
     return (
       <div className="App">
         <h1>Book Finder</h1>
@@ -36,9 +78,11 @@ class App extends Component {
         <SearchBox onSearch={this.search.bind(this)} />
         {isLoading
           ? <Loader/>
-          : books.length
-            ? <CardGrid items={books} />
-            : 'Nothing to see hear'
+          : isLoadingMore
+            ? <div><CardGrid items={books} /><Loader/></div>
+            : books.length
+              ? <CardGrid items={books} />
+              : 'Nothing to see hear'
         }
       </div>
     );
