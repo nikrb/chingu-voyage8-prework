@@ -34,3 +34,23 @@ it('should display fetched books on search title', async () => {
   });
 });
 
+it('should display message if there is no search term', async () => {
+  const { getByPlaceholderText, getByTestId, getByText } = render(<App/>);
+  fireEvent.change(getByPlaceholderText('title'), { target: { value: '' }});
+  fireEvent.click(getByTestId('search_btn'));
+  await wait(() => {
+    expect(getByText('Please enter a (partial) title')).toBeDefined();
+  });
+});
+
+it('should display message on error', async () => {
+  actions.getBooks = jest.fn(title => Promise.reject('my test error'));
+  const { getByPlaceholderText, getByTestId, getByText } = render(<App/>);
+  fireEvent.change(getByPlaceholderText('title'), { target: { value: 'quilting' }});
+  fireEvent.click(getByTestId('search_btn'));
+  expect(actions.getBooks).toBeCalledWith({ title: 'quilting' });
+  await wait(() => {
+    expect(getByText(/my test error/)).toBeDefined();
+  });
+});
+
