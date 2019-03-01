@@ -34,6 +34,12 @@ export const getBooks = payload => {
         : '//via.placeholder.com/128x194?No Cover';
       return { author, cover, previewLink, publisher, title };
     });
+  })
+  .catch(e => {
+    if (e.toString() === 'TypeError: Failed to fetch') {
+      throw new Error('Sorry but the connection seems to have failed');
+    }
+    throw new Error(e);
   });
 };
 
