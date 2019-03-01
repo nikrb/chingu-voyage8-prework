@@ -25,7 +25,7 @@ it('should display fetched books on search title', async () => {
   const search = getByPlaceholderText('title');
   fireEvent.change(search, { target: { value: 'title' } });
   fireEvent.click(getByTestId('search_btn'));
-  expect(actions.getBooks).toBeCalledWith('title');
+  expect(actions.getBooks).toBeCalledWith({ title: 'title' });
   await wait(() => {
     expect(getByText('test title')).toBeDefined();
     expect(getByText('by nik')).toBeDefined();
