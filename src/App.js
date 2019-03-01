@@ -61,7 +61,7 @@ class App extends Component {
       })
       .catch(err => {
         this.setState({
-          errmsg: err.message,
+          errmsg: err,
           isLoading: false,
         });
       });

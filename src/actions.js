@@ -18,7 +18,7 @@ export const getBooks = payload => {
   .then(result => {
     if (result.error) {
       const { code, message } = result.error;
-      throw new Error(`${code}: ${message}`);
+      return Promise.reject(`${code}: ${message}`);
     }
     return result.items.map(item => {
       const {
@@ -37,9 +37,9 @@ export const getBooks = payload => {
   })
   .catch(e => {
     if (e.toString() === 'TypeError: Failed to fetch') {
-      throw new Error('Sorry but the connection seems to have failed');
+      return Promise.reject('Sorry but the connection seems to have failed');
     }
-    throw new Error(e);
+    Promise.reject(e.toString());
   });
 };
 
