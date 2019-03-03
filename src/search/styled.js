@@ -1,5 +1,32 @@
 import styled from 'styled-components';
 
+export const HistoryWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const HistoryPane = styled.div`
+  background-color: white;
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid #8ff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #7a7;
+`;
+
+export const HistoryItemWrapper = styled.div`
+  padding: 5px;
+
+  :hover {
+    background-color: #eef;
+  }
+`;
+
 export const SearchBoxWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -38,5 +65,18 @@ export const ClearButton = styled.div`
   cursor: pointer;
   top: 1rem;
   right: 1rem;
+`;
+
+export const CrossButton = styled.div`
+  position: absolute;
+  font-size: 0.8rem;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  padding: 0 0.2rem;
+
+  :hover {
+    box-shadow: 0 0 5px darkred;
+  }
 `;
 
