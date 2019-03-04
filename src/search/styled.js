@@ -31,7 +31,7 @@ export const SearchBoxWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #88f;
+  background-image: linear-gradient(to right, #88f, #ccf);
   margin-bottom: 10px;
   padding: 5px;
   border: 2px solid #2a2;
@@ -43,7 +43,14 @@ export const SearchButtonStyle = styled.button`
   cursor: pointer;
   padding: 5px;
   background-color: #8f8;
+  background-image: linear-gradient(to bottom, #afa, #6b6);
   border-radius: 10px;
+  box-shadow: 2px 2px 4px #aaa;
+
+  :hover {
+    background-image: linear-gradient( to bottom, #6b6, #afa);
+    box-shadow: none;
+  }
 `;
 
 export const InputWrapper = styled.div`
